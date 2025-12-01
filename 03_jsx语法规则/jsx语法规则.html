@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>jsx语法规则</title>
+    <style>
+        .title {
+            color: red;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- 准备好一个容器 -->
+    <div id="test"></div>
+    <!-- 引入react核心库 优先引入 -->
+    <script type="text/javascript" src="../js/react.development.js"></script>
+    <!-- 引入react-dom 用于支持react操作DOM -->
+    <script type="text/javascript" src="../js/react-dom.development.js"></script>
+    <!-- 引入babel 用于支持jsx语法，将jsx转为js -->
+    <script type="text/javascript" src="../js/babel.min.js"></script>
+    <!-- jsx是js的语法糖, 一种简写方式 -->
+    <!-- 此处一定要写 babel -->
+    <script type="text/babel">
+        const myId = 'aTgUigu';
+        const myData = "Hellow React";
+        // 1.创建虚拟DOM元素
+        // 此处一定不要写引号，因为不是字符串
+        const VDOM = (
+            <div>
+                <h2 className="title" id={myId.toLowerCase()}>
+                    <span style={{ color: 'blue', fontSize: '32px' }}>{myData.toLowerCase()}</span>
+                </h2>
+                <h2 className="title" id={myId.toUpperCase()}>
+                    <span style={{ color: 'blue', fontSize: '32px' }}>{myData.toUpperCase()}</span>
+                </h2>
+                <input type="text"/>
+                <good>123
+                </good>
+                 <Good>123
+                </Good>
+            </div>
+        );
+        // 2.渲染虚拟DOM到页面 
+        ReactDOM.render(VDOM, document.getElementById("test"))
+
+        // jsx语法规则:
+        //  1.定义虚拟DOM时, 不要写引号.
+        //  2.在虚拟DOM中, 可以使用大括号{}来嵌入js表达式.
+        //  3.在虚拟DOM中, 可以使用className来代替class属性.
+        //  4.内联样式, 要用style={{key:value}}的形式, 键名要驼峰式命名.
+        //  5.只能有一个根标签.
+        //  6.标签必须闭合.
+        // 7.标签首字母
+            // 1.如果是小写字母开头, 则将标签转为html中的同名元素,若html中无该标签对应的同名元素, 则报错.
+            // 2.如果是大写字母, 则渲染为React组件. 若没有对应的React组件, 则报错.
+        //  7.在大括号中, 可以写任意的js表达式, 比如变量, 函数调用, 表达式等.
+        //  8.在大括号中, 不能写语句, 只能写表达式.
+        //  9.在虚拟DOM中, 可以使用小括号()来分组, 但是不能使用大括号{}来分组.
+        //  10.控制语句(如if-else, for)不能直接写在JSX中, 但可以在JSX外部使用, 或使用三元运算符、逻辑运算符来替代.
+        // 11.在JSX中可以使用三元运算符、逻辑与(&&)、逻辑非(!)和逻辑或(||)运算符.
+    </script>
+</body>
+
+</html>
